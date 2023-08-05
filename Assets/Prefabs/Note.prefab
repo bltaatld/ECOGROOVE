@@ -139,4 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noteSpeed: 400
+  isEditMode: 0
+  isSpike: 0
   note: {fileID: 7432593000388643157}

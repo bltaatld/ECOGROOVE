@@ -31,11 +31,12 @@ public class BeatLine : MonoBehaviour
             {
                 float result = (ms * i) + offset;
                 GameObject @object = Instantiate(line, root.transform);
-                @object.transform.position = new Vector2(transform.position.y + (result * NoteWriter.enlargement * mul * Tap.canvasMul), 590f);
+                @object.transform.position = new Vector2(transform.position.y + (result * NoteWriter.enlargement * mul * Tap.canvasMul), 425f);
                 @object.transform.localScale = new Vector2(Tap.canvasMul, Tap.canvasMul);
                 @object.transform.GetChild(1).GetComponent<Text>().text = $"{result}ms";
             }
 
+            root.transform.position = new Vector2(0, 0);
             isSpawn = true;
         }
     }

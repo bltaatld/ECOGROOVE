@@ -7,6 +7,10 @@ TagManager:
   - Dead
   - note
   - Ground
+  - Pure
+  - Neat
+  - Clean
+  - Damaged
   layers:
   - Default
   - TransparentFX
