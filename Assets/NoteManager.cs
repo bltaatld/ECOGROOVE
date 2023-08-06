@@ -17,11 +17,32 @@ public class NoteManager : MonoBehaviour
 {
     public GameObject notePrefab;
     public Transform targetParent;
-    public Transform spikeParent;
     public GameObject clickedButton;
     public NoteInfo noteInfo;
     public Vector3[] notePosition;
     public Vector3[] savePostion;
+
+    public void Update()
+    {
+        Vector2 Whell = Input.mouseScrollDelta;
+
+        // 스크롤 위로 올릴 때
+        if (Whell.y > 0)
+        {
+            for (int i = 0; i < notePosition.Length; i++)
+            {
+                notePosition[i] = new Vector3(notePosition[i].x + 50f, notePosition[i].y, notePosition[i].z);
+            }
+        }
+        // 스크롤 아래로 내릴 때
+        else if (Whell.y < 0)
+        {
+            for (int i = 0; i < notePosition.Length; i++)
+            {
+                notePosition[i] = new Vector3(notePosition[i].x - 50f, notePosition[i].y, notePosition[i].z);
+            }
+        }
+    }
 
     public void AllSave()
     {
@@ -33,9 +54,13 @@ public class NoteManager : MonoBehaviour
         noteInfo.spikePositionInfo = new Vector3[spike.Length];
 
         // 각 오브젝트의 위치를 objectPositions 배열에 저장합니다.
-        for (int i = 0; i < spike.Length; i++)
+        for (int i = 0; i < objectsWithScript.Length; i++)
         {
             noteInfo.positionInfo[i] = objectsWithScript[i].transform.position;
+        }
+
+        for (int i = 0; i < spike.Length; i++)
+        {
             noteInfo.spikePositionInfo[i] = spike[i].transform.position;
         }
     }
@@ -43,22 +68,31 @@ public class NoteManager : MonoBehaviour
 
     public void NoteSpawn()
     {
-        if (!notePrefab.GetComponent<Spike>())
+        if (notePrefab.GetComponent<Spike>())
+        {
+            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(clickedButton.transform.position);
+
+            GameObject spikeNote = Instantiate(notePrefab);
+            spikeNote.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
+            Hit hitScript = spikeNote.GetComponent<Hit>();
+            hitScript.isEditMode = true;
+        }
+        else
         {
             targetParent = clickedButton.transform;
 
-            // 이미 해당 위치에 노트가 있는지 확인합니다.
-            foreach (Vector3 position in notePosition)
+            // parent 오브젝트의 자식들을 모두 가져옵니다.
+            Transform[] children = targetParent.GetComponentsInChildren<Transform>();
+
+            // parent 오브젝트의 자식들 중에서 Hit 컴포넌트를 가지고 있는 오브젝트를 찾아서 제거합니다.
+            foreach (Transform child in children)
             {
-                if (Vector3.Distance(position, targetParent.position) < 0.01f)
+                Hit hitComponent = child.GetComponent<Hit>();
+                if (hitComponent != null)
                 {
-                    // 이미 노트가 있으면 해당 위치의 노트를 삭제하고 notePosition에서 제거합니다.
-                    foreach (Transform child in targetParent)
-                    {
-                        Destroy(child.gameObject);
-                    }
-                    RemoveNotePosition(targetParent.position);
-                    return;
+                    Destroy(child.gameObject);
+                    RemoveNotePosition(child.transform.position);
+                    return; // 하나의 Hit 컴포넌트를 가지는 자식을 찾았으면 함수를 종료합니다.
                 }
             }
 
@@ -69,43 +103,9 @@ public class NoteManager : MonoBehaviour
 
             // 노트의 위치를 타겟 오브젝트의 위치로 이동시킵니다.
             newNote.transform.position = targetParent.position;
-        }
 
-        if (notePrefab.GetComponent<Spike>())
-        {
-            Vector3 worldPosition = Camera.main.ScreenToWorldPoint(clickedButton.transform.position);
-
-            foreach (Vector3 position in savePostion)
-            {
-                if (Vector3.Distance(position, worldPosition) < 0.01f)
-                {
-                    foreach (Transform child in spikeParent)
-                    {
-                        Destroy(child.gameObject);
-                    }
-                    RemoveSpikePosition(worldPosition);
-                    return;
-                }
-            }
-
-            GameObject newNote = Instantiate(notePrefab,spikeParent);
-            newNote.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0);
-            Hit hitScript = newNote.GetComponent<Hit>();
-            hitScript.isEditMode = true;
-        }
-    }
-
-    private void RemoveSpikePosition(Vector3 positionToRemove)
-    {
-        for (int i = 0; i < savePostion.Length; i++)
-        {
-            if (Vector3.Distance(savePostion[i], positionToRemove) < 0.01f)
-            {
-                // 해당 위치를 notePosition에서 제거합니다.
-                savePostion[i] = savePostion[savePostion.Length - 1];
-                Array.Resize(ref savePostion, savePostion.Length - 1);
-                return;
-            }
+            Array.Resize(ref notePosition, notePosition.Length + 1);
+            notePosition[notePosition.Length - 1] = newNote.transform.position;
         }
     }
 
@@ -115,7 +115,7 @@ public class NoteManager : MonoBehaviour
     {
         for (int i = 0; i < notePosition.Length; i++)
         {
-            if (Vector3.Distance(notePosition[i], positionToRemove) < 0.01f)
+            if (notePosition[i] == positionToRemove)
             {
                 // 해당 위치를 notePosition에서 제거합니다.
                 notePosition[i] = notePosition[notePosition.Length - 1];
@@ -135,7 +135,7 @@ public class NoteManager : MonoBehaviour
         if (clickedObject != null && clickedObject.GetComponent<Button>() != null)
         {
             clickedButton = clickedObject;
-            Debug.Log("Clicked Button: " + clickedButton.name);
+            Debug.Log("Clicked Button Pos: " + clickedButton.transform.position);
         }
         else
         {

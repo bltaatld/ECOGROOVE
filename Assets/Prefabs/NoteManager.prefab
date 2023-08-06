@@ -44,21 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e723ca0e2ef36244d908cafd9cedf3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notePrefab: {fileID: 34446998627661257, guid: 303e94d7c43530f47bf153e39071b326, type: 3}
+  notePrefab: {fileID: 7432593000388643157, guid: 4b72ed84899b21344a1b418ac5e0b472, type: 3}
   targetParent: {fileID: 0}
-  spikeParent: {fileID: 8968434015440117775, guid: d4471d655eb5f8c47a610453cf879f93, type: 3}
   clickedButton: {fileID: 0}
   noteInfo:
-    positionInfo:
-    - {x: 700.20776, y: 428.0755, z: 0}
-    - {x: 850.20703, y: 428.0755, z: 0}
-    - {x: 1000.2073, y: 428.0755, z: 0}
-    spikePositionInfo:
-    - {x: 6.434513, y: -1.0835992, z: 0}
-    - {x: 7.8234024, y: -1.0835994, z: 0}
-    - {x: 9.212291, y: -1.0614548, z: 0}
+    positionInfo: []
+    spikePositionInfo: []
   notePosition: []
-  savePostion:
-  - {x: 6.861931e-12, y: 5.65e-43, z: 0.0000006675893}
-  - {x: 0.00000021437954, y: 0.0000000033525234, z: 0.00000005336479}
-  - {x: 0.0000000026657416, y: 0.0000026553976, z: 7.9012965e-37}
+  savePostion: []
