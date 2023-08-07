@@ -27,9 +27,7 @@ public class EditorPlayMovement : MonoBehaviour
         if (isPlayActive)
         {
             StartPosSet();
-            Vector2 newPosition = rectTransform.anchoredPosition;
-            newPosition.x -= speed/2 * Time.deltaTime;
-            rectTransform.anchoredPosition = newPosition;
+            rectTransform.localPosition += Vector3.left * speed * Time.deltaTime;
         }
     }
 

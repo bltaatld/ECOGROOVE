@@ -9,6 +9,7 @@ using System;
 [System.Serializable]
 public class NoteInfo
 {
+    public string songName;
     public Vector3[] positionInfo;
     public Vector3[] spikePositionInfo;
 }
@@ -44,7 +45,7 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    public void AllSave()
+    public void AllSave(string fileName)
     {
         GameObject[] objectsWithScript = GameObject.FindGameObjectsWithTag("note");
         GameObject[] spike = GameObject.FindGameObjectsWithTag("Damaged");
@@ -63,6 +64,8 @@ public class NoteManager : MonoBehaviour
         {
             noteInfo.spikePositionInfo[i] = spike[i].transform.position;
         }
+
+        GameSystem.instance.noteInfoSaver.SaveData(noteInfo, fileName + ".json");
     }
 
 

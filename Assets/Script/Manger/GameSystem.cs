@@ -9,6 +9,7 @@ public class GameSystem : MonoBehaviour
     public PlayerControl playerControl;
     public NoteManager noteManager;
     public PlayerMovement playerMovement;
+    public NoteInfoSaver noteInfoSaver;
 
     public GameObject normalNote;
     public GameObject jumpNote;
