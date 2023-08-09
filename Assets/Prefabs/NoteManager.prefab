@@ -48,6 +48,7 @@ MonoBehaviour:
   targetParent: {fileID: 0}
   clickedButton: {fileID: 0}
   noteInfo:
+    songName: 
     positionInfo: []
     spikePositionInfo: []
   notePosition: []

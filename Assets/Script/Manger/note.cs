@@ -5,28 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class note : MonoBehaviour
 {
+    [Header("* System Value")]
     public int bpm = 0;
     public bool isNotHit;
     public GameObject noteManger;
-    int currentBPM;
-    double currentTime = 0d;
 
+    [Header("* Object Reference")]
     [SerializeField] Transform tfNoteApper = null;
     [SerializeField] GameObject goNote = null;
     [SerializeField] GameObject spike = null;
     Timing TimingManager;
 
+    [Header("* SongInfo Reference")]
+    public string fileName;
+    public string songName;
+    public Vector3[] positionInfo;
+    public Vector3[] spikePositionInfo;
+
     void Start()
     {
         TimingManager = GetComponent<Timing>();
-        currentBPM = bpm;
-
+        GameSystem.instance.noteInfoSaver.LoadData(fileName+".json", ref songName, ref positionInfo, ref spikePositionInfo);
         SavedNoteSpawn();
     }
 
     public void SavedNoteSpawn()
     {
-        foreach (Vector3 position in noteManger.GetComponent<NoteManager>().noteInfo.positionInfo)
+        foreach (Vector3 position in positionInfo)
         {
             GameObject t_note = Instantiate(goNote, position, Quaternion.identity);
             t_note.transform.SetParent(this.transform);
@@ -34,7 +39,7 @@ public class note : MonoBehaviour
             TimingManager.boxNoteList.Add(t_note);
         }
 
-        foreach (Vector3 position in noteManger.GetComponent<NoteManager>().noteInfo.spikePositionInfo)
+        foreach (Vector3 position in spikePositionInfo)
         {
             GameObject t_note = Instantiate(spike, position, Quaternion.identity);
         }
