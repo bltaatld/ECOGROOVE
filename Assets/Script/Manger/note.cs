@@ -11,7 +11,6 @@ public class note : MonoBehaviour
     public GameObject noteManger;
 
     [Header("* Object Reference")]
-    [SerializeField] Transform tfNoteApper = null;
     [SerializeField] GameObject goNote = null;
     [SerializeField] GameObject spike = null;
     Timing TimingManager;
@@ -42,6 +41,7 @@ public class note : MonoBehaviour
         foreach (Vector3 position in spikePositionInfo)
         {
             GameObject t_note = Instantiate(spike, position, Quaternion.identity);
+            t_note.transform.SetParent(this.transform);
         }
     }
 
@@ -52,10 +52,7 @@ public class note : MonoBehaviour
             Debug.Log("OutOfBounds");
             TimingManager.boxNoteList.Remove(collision.gameObject);
             Destroy(collision.gameObject);
-            /*
-            TimingManager.boxNoteList.Remove(collision.gameObject);
-            Destroy(collision.gameObject);
-            SceneManager.LoadScene("GameOverCutScene");*/
+            //SceneManager.LoadScene("GameOverCutScene");
         }
     }
 }

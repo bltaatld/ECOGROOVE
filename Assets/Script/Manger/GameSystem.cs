@@ -27,6 +27,5 @@ public class GameSystem : MonoBehaviour
     public void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 }
