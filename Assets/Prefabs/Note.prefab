@@ -142,3 +142,4 @@ MonoBehaviour:
   isEditMode: 0
   isSpike: 0
   note: {fileID: 7432593000388643157}
+  inputNoteSpeed: {fileID: 123641814834135536, guid: 2278e1fe5e6d821478181836054e1e8c, type: 3}

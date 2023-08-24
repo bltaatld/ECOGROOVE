@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEditor;
 using System;
+using TMPro;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class NoteInfo
@@ -19,9 +21,12 @@ public class NoteManager : MonoBehaviour
     public GameObject notePrefab;
     public Transform targetParent;
     public GameObject clickedButton;
+    public string fileName;
+    public TMP_InputField nameInput;
     public NoteInfo noteInfo;
     public Vector3[] notePosition;
     public Vector3[] savePostion;
+
 
     public void Update()
     {
@@ -45,7 +50,12 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    public void AllSave(string fileName)
+    public void SetFileName()
+    {
+        fileName = nameInput.text;
+    }
+
+    public void AllSave()
     {
         GameObject[] objectsWithScript = GameObject.FindGameObjectsWithTag("note");
         GameObject[] spike = GameObject.FindGameObjectsWithTag("Damaged");
@@ -82,7 +92,16 @@ public class NoteManager : MonoBehaviour
         }
         else
         {
-            targetParent = clickedButton.transform;
+            //TargetButton Setting
+            if (GameSystem.instance.keyInteraction.isKeyClick)
+            {
+                targetParent = GameSystem.instance.keyInteraction.currentButton.transform;
+            }
+
+            else
+            {
+                targetParent = clickedButton.transform;
+            }
 
             // parent 오브젝트의 자식들을 모두 가져옵니다.
             Transform[] children = targetParent.GetComponentsInChildren<Transform>();

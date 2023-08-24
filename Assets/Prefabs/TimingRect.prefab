@@ -319,7 +319,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1201162383890226786}
   m_Layer: 5
-  m_Name: TiminingRect
+  m_Name: TimingRect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

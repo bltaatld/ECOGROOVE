@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScrollScript : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ScrollScript : MonoBehaviour
     public bool isNotAdd = false;
 
     public GameObject followObject;
+    public TMP_InputField inputMul;
 
     private void Update()
     {
@@ -56,5 +58,17 @@ public class ScrollScript : MonoBehaviour
     public void Correction()
     {
         transform.position = new Vector2(transform.position.x, (140.0f - (timing * NoteWriter.enlargement)) * Mul * Tap.canvasMul);
+    }
+
+    public void SetMul()
+    {
+        if(float.TryParse(inputMul.text, out Mul))
+        {
+            Debug.Log("mul set to " + Mul.ToString());
+        }
+        else
+        {
+            Debug.Log("mul set failed");
+        }
     }
 }

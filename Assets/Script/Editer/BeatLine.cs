@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BeatLine : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class BeatLine : MonoBehaviour
 
     public static float mul = 1.0f;
     public static bool isSpawn = false;
+
+    public TMP_InputField bpmInput;
 
     private GameObject root;
 
@@ -54,6 +57,19 @@ public class BeatLine : MonoBehaviour
         {
             DestroyImmediate(root);
             isSpawn = false;
+        }
+    }
+
+    public void SetBPM()
+    {
+        if(float.TryParse(bpmInput.text, out bpm))
+        {
+            Debug.Log("bpm set to " + bpm.ToString());
+        }
+        else
+        {
+            Debug.Log("bpm set failed");
+            bpm = 1f;
         }
     }
 }

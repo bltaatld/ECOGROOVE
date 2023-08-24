@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Hit : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Hit : MonoBehaviour
     public bool isEditMode;
     public bool isSpike;
     public GameObject note;
+    public TMP_InputField inputNoteSpeed;
     UnityEngine.UI.Image noteImage;
 
     void Start()
@@ -31,6 +33,21 @@ public class Hit : MonoBehaviour
     {
         noteImage.enabled = false;
         Destroy(note);
+    }
+
+    public void SetSpeed()
+    {
+        if(!isSpike)
+        {
+            if (float.TryParse(inputNoteSpeed.text, out noteSpeed))
+            {
+                Debug.Log("speed set to " + noteSpeed.ToString());
+            }
+            else
+            {
+                Debug.Log("speed set failed");
+            }
+        }
     }
 
     /*

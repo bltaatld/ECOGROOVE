@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameSystem : MonoBehaviour
@@ -10,6 +11,7 @@ public class GameSystem : MonoBehaviour
     public NoteManager noteManager;
     public PlayerMovement playerMovement;
     public NoteInfoSaver noteInfoSaver;
+    public KeyInteraction keyInteraction;
 
     public GameObject normalNote;
     public GameObject jumpNote;
@@ -22,6 +24,11 @@ public class GameSystem : MonoBehaviour
     public void SwapToJump()
     {
         noteManager.notePrefab = jumpNote;
+    }
+
+    public void FindSongName()
+    {
+        noteManager.nameInput = GameObject.Find("SongName").GetComponent<TMP_InputField>();
     }
 
     public void Awake()
