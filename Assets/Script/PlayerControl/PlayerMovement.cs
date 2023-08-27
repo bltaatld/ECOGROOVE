@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
@@ -16,22 +17,50 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public Slider slider;
 
+    [Header("[ Flick ]")]
+    public Vector2 touchStartPos;
+    public Vector2 touchEndPos;
+    public float flickThreshold = 100.0f;
+    public float minFlickSpeed = 500.0f;
+
     void Update()
     {
         slider.maxValue = maxHealth;
         slider.value = health;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             animator.SetTrigger("IsClick");
         }
-
-        if (Input.GetMouseButtonDown(1))
+        else if (Input.touchCount > 0)
         {
-            animator.SetBool("IsJump",true);
-            Jump();
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchStartPos = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                touchEndPos = touch.position;
+                CheckForFlick();
+            }
         }
 
         rigid.velocity = new Vector2(moveSpeed, rigid.velocity.y);
+    }
+
+    void CheckForFlick()
+    {
+        Vector2 flickDirection = touchEndPos - touchStartPos;
+        float flickDistance = flickDirection.magnitude;
+        float flickSpeed = flickDistance / Time.deltaTime;
+
+        if (flickDistance > flickThreshold && flickSpeed > minFlickSpeed)
+        {
+            Debug.Log("Flick detected!");
+            Jump();
+            // 여기에 리듬 게임 로직을 추가할 수 있습니다.
+        }
     }
 
     void Jump()
