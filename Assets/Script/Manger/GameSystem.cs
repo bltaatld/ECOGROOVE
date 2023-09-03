@@ -12,9 +12,12 @@ public class GameSystem : MonoBehaviour
     public PlayerMovement playerMovement;
     public NoteInfoSaver noteInfoSaver;
     public KeyInteraction keyInteraction;
+    public LongNote longNote;
+    public LongNoteSpawn longNoteLink;
 
     public GameObject normalNote;
     public GameObject jumpNote;
+    public GameObject longNotePrefab;
 
     public void SwapToNormal()
     {
@@ -24,6 +27,11 @@ public class GameSystem : MonoBehaviour
     public void SwapToJump()
     {
         noteManager.notePrefab = jumpNote;
+    }
+
+    public void SwapToLong()
+    {
+        noteManager.notePrefab = longNotePrefab;
     }
 
     public void FindSongName()

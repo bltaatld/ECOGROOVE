@@ -11,6 +11,9 @@ TagManager:
   - Neat
   - Clean
   - Damaged
+  - LongNote
+  - TriggerBox
+  - Dirty
   layers:
   - Default
   - TransparentFX

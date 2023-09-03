@@ -27,10 +27,13 @@ public class PlayerMovement : MonoBehaviour
     {
         slider.maxValue = maxHealth;
         slider.value = health;
+
+        // 단순한 터치로 클릭 시
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             animator.SetTrigger("IsClick");
         }
+        // 스와이프 행동 시
         else if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);

@@ -19,6 +19,7 @@ public class NoteInfo
 public class NoteManager : MonoBehaviour
 {
     public GameObject notePrefab;
+    public GameObject longNotePrefab;
     public Transform targetParent;
     public GameObject clickedButton;
     public string fileName;
@@ -26,7 +27,8 @@ public class NoteManager : MonoBehaviour
     public NoteInfo noteInfo;
     public Vector3[] notePosition;
     public Vector3[] savePostion;
-
+    public bool isLongNote;
+    public bool isLongNoteActive;
 
     public void Update()
     {
@@ -90,6 +92,30 @@ public class NoteManager : MonoBehaviour
             Hit hitScript = spikeNote.GetComponent<Hit>();
             hitScript.isEditMode = true;
         }
+
+        if (isLongNoteActive)
+        {
+            if (GameSystem.instance.keyInteraction.isKeyClick)
+            {
+                targetParent = GameSystem.instance.keyInteraction.currentButton.transform;
+            }
+
+            else
+            {
+                targetParent = clickedButton.transform;
+            }
+
+            // 노트를 인스턴스화하고, Hit 스크립트의 isEditMode 변수를 설정합니다.
+            GameObject newNote = Instantiate(longNotePrefab, targetParent);
+
+            // 노트의 위치를 타겟 오브젝트의 위치로 이동시킵니다.
+            newNote.transform.position = targetParent.position;
+            GameSystem.instance.longNoteLink.pointB = newNote.transform;
+            GameSystem.instance.longNoteLink.LinkLongNote();
+
+            isLongNoteActive = false;
+        }
+
         else
         {
             //TargetButton Setting
@@ -128,7 +154,18 @@ public class NoteManager : MonoBehaviour
 
             Array.Resize(ref notePosition, notePosition.Length + 1);
             notePosition[notePosition.Length - 1] = newNote.transform.position;
+
+            if (isLongNote)
+            {
+                GameSystem.instance.longNoteLink.pointA = newNote.transform;
+                isLongNoteActive = true;
+            }
         }
+    }
+
+    public void longNoteActive(bool value)
+    {
+        isLongNote = value;
     }
 
 

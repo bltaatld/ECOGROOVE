@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notePrefab: {fileID: 7432593000388643157, guid: 4b72ed84899b21344a1b418ac5e0b472, type: 3}
+  longNotePrefab: {fileID: 9209405941954894094, guid: b3767abdaa6f9c042b77ce53bc8c06fd, type: 3}
   targetParent: {fileID: 0}
   clickedButton: {fileID: 0}
   fileName: 
@@ -55,3 +56,5 @@ MonoBehaviour:
     spikePositionInfo: []
   notePosition: []
   savePostion: []
+  isLongNote: 0
+  isLongNoteActive: 0

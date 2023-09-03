@@ -9,6 +9,7 @@ public class EffectManager : MonoBehaviour
     string Perfecthit = "Phit";
     string Goodhit = "Ghit";
     string Badhit = "Bhit";
+    string ToBadhit = "TBhit";
     string HeartBeat = "Hbeat";
 
     public void PerfectHitEffect()
@@ -24,6 +25,11 @@ public class EffectManager : MonoBehaviour
     public void BadHitEffect()
     {
         noteAnim.SetTrigger(Badhit);
+    }
+
+    public void ToBadHitEffect()
+    {
+        noteAnim.SetTrigger(ToBadhit);
     }
 
     public void HeartBeatEffect()
