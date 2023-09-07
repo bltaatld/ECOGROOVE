@@ -48,7 +48,7 @@ MonoBehaviour:
   longNotePrefab: {fileID: 9209405941954894094, guid: b3767abdaa6f9c042b77ce53bc8c06fd, type: 3}
   targetParent: {fileID: 0}
   clickedButton: {fileID: 0}
-  fileName: longnotetest
+  fileName: 
   nameInput: {fileID: 0}
   noteInfo:
     songName: 

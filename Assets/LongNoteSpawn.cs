@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class LongNoteSpawn : MonoBehaviour
 {
+    public List<GameObject> longNotes = new List<GameObject>();
     public Image imagePrefab;     // 연결선에 사용할 이미지 프리팹
     public Transform imageParent; // 이미지들의 부모 객체
     public Transform pointA;      // 첫 번째 이미지 위치
@@ -16,10 +18,29 @@ public class LongNoteSpawn : MonoBehaviour
 
     public float currentLongWidth;
 
+    public void RemoveGameObject(GameObject gameObjectToRemove)
+    {
+        int index = longNotes.IndexOf(gameObjectToRemove);
+
+        if (index != -1)
+        {
+            longNotes.RemoveAt(index);
+
+            // value 배열에서 해당 인덱스의 값을 삭제
+            List<float> newValueList = new List<float>(GameSystem.instance.noteManager.longWidth);
+            if (index < newValueList.Count)
+            {
+                newValueList.RemoveAt(index);
+                GameSystem.instance.noteManager.longWidth = newValueList.ToArray();
+            }
+        }
+    }
+
     public void LinkLongNote()
     {
         // 연결선 이미지 프리팹을 복제하여 생성
         lineImage = Instantiate(imagePrefab, imageParent);
+        longNotes.Add(lineImage.gameObject);
 
         // 연결선 이미지의 RectTransform 컴포넌트를 가져오기
         lineTransform = lineImage.GetComponent<RectTransform>();
@@ -37,7 +58,6 @@ public class LongNoteSpawn : MonoBehaviour
         // 연결선 이미지의 크기 설정 (두 지점 사이의 거리 계산)
         float distance = Vector3.Distance(positionA, positionB);
         lineTransform.sizeDelta = new Vector2(distance, lineTransform.sizeDelta.y);
-
         currentLongWidth = lineTransform.sizeDelta.x;
     }
 }

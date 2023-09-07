@@ -8,6 +8,11 @@ public class ObjectRemover : MonoBehaviour
     {
         if (GameSystem.instance.isEditMode)
         {
+            if (gameObject.GetComponent<LongNote>())
+            {
+                GameSystem.instance.longNoteLink.RemoveGameObject(gameObject);
+            }
+
             Destroy(gameObject);
         }
     }

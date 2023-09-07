@@ -15,6 +15,7 @@ TagManager:
   - TriggerBox
   - Dirty
   - LongNoteEnd
+  - Debug
   layers:
   - Default
   - TransparentFX
