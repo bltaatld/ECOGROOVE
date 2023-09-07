@@ -14,6 +14,9 @@ public class NoteInfo
     public string songName;
     public Vector3[] positionInfo;
     public Vector3[] spikePositionInfo;
+    public Vector3[] longNotePositionInfo;
+    public Vector3[] longNoteEndPositionInfo;
+    public float[] longWidthInfo;
 }
 
 public class NoteManager : MonoBehaviour
@@ -26,7 +29,8 @@ public class NoteManager : MonoBehaviour
     public TMP_InputField nameInput;
     public NoteInfo noteInfo;
     public Vector3[] notePosition;
-    public Vector3[] savePostion;
+    public Vector3[] longNotePosition;
+    public float[] longWidth;
     public bool isLongNote;
     public bool isLongNoteActive;
 
@@ -61,10 +65,15 @@ public class NoteManager : MonoBehaviour
     {
         GameObject[] objectsWithScript = GameObject.FindGameObjectsWithTag("note");
         GameObject[] spike = GameObject.FindGameObjectsWithTag("Damaged");
+        GameObject[] longNote = GameObject.FindGameObjectsWithTag("LongNote");
+        GameObject[] longNoteEnd = GameObject.FindGameObjectsWithTag("LongNoteEnd");
 
         // objectPositions 배열을 objectsWithScript의 길이만큼 생성합니다.
         noteInfo.positionInfo = new Vector3[objectsWithScript.Length];
         noteInfo.spikePositionInfo = new Vector3[spike.Length];
+        noteInfo.longWidthInfo = new float[longNote.Length];
+        noteInfo.longNotePositionInfo = new Vector3[longNote.Length];
+        noteInfo.longNoteEndPositionInfo = new Vector3[longNoteEnd.Length];
 
         // 각 오브젝트의 위치를 objectPositions 배열에 저장합니다.
         for (int i = 0; i < objectsWithScript.Length; i++)
@@ -75,6 +84,13 @@ public class NoteManager : MonoBehaviour
         for (int i = 0; i < spike.Length; i++)
         {
             noteInfo.spikePositionInfo[i] = spike[i].transform.position;
+        }
+
+        for (int i = 0; i < longNote.Length; i++)
+        {
+            noteInfo.longNotePositionInfo[i] = longNote[i].transform.position;
+            noteInfo.longNoteEndPositionInfo[i] = longNoteEnd[i].transform.position;
+            noteInfo.longWidthInfo[i] = longWidth[i];
         }
 
         GameSystem.instance.noteInfoSaver.SaveData(noteInfo, fileName + ".json");
@@ -112,6 +128,9 @@ public class NoteManager : MonoBehaviour
             newNote.transform.position = targetParent.position;
             GameSystem.instance.longNoteLink.pointB = newNote.transform;
             GameSystem.instance.longNoteLink.LinkLongNote();
+
+            Array.Resize(ref longWidth, longWidth.Length + 1);
+            longWidth[longWidth.Length - 1] = GameSystem.instance.longNoteLink.currentLongWidth;
 
             isLongNoteActive = false;
         }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,10 @@ public class LongNoteSpawn : MonoBehaviour
     public Transform pointA;      // 첫 번째 이미지 위치
     public Transform pointB;      // 두 번째 이미지 위치
 
-    private Image lineImage;      // 연결선 이미지 컴포넌트
+    public Image lineImage;      // 연결선 이미지 컴포넌트
     private RectTransform lineTransform; // 연결선 이미지의 RectTransform 컴포넌트
+
+    public float currentLongWidth;
 
     public void LinkLongNote()
     {
@@ -35,6 +38,6 @@ public class LongNoteSpawn : MonoBehaviour
         float distance = Vector3.Distance(positionA, positionB);
         lineTransform.sizeDelta = new Vector2(distance, lineTransform.sizeDelta.y);
 
-        // 이외에 연결선 이미지의 스타일 등을 설정할 수 있습니다.
+        currentLongWidth = lineTransform.sizeDelta.x;
     }
 }

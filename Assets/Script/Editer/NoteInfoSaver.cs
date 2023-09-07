@@ -20,7 +20,7 @@ public class NoteInfoSaver : MonoBehaviour
         Debug.Log("NoteInfo가 파일에 저장되었습니다: " + filePath);
     }
 
-    public void LoadData(string fileName, ref string songName, ref Vector3[] notePosition, ref Vector3[] spikePosition)
+    public void LoadData(string fileName, ref string songName, ref Vector3[] notePosition, ref Vector3[] spikePosition, ref Vector3[] longNotePositionInfo, ref Vector3[] longNoteEndPositionInfo, ref float[] longWidthInfo)
     {
         string filePath = "Assets/Data/" + fileName;
 
@@ -44,6 +44,24 @@ public class NoteInfoSaver : MonoBehaviour
             {
                 Array.Resize(ref spikePosition, loadedData.spikePositionInfo.Length);
                 Array.Copy(loadedData.spikePositionInfo, spikePosition, loadedData.spikePositionInfo.Length);
+            }
+
+            if (loadedData.longNotePositionInfo != null)
+            {
+                Array.Resize(ref longNotePositionInfo, loadedData.longNotePositionInfo.Length);
+                Array.Copy(loadedData.longNotePositionInfo, longNotePositionInfo, loadedData.longNotePositionInfo.Length);
+            }
+
+            if (loadedData.longNoteEndPositionInfo != null)
+            {
+                Array.Resize(ref longNoteEndPositionInfo, loadedData.longNoteEndPositionInfo.Length);
+                Array.Copy(loadedData.longNoteEndPositionInfo, longNoteEndPositionInfo, loadedData.longNoteEndPositionInfo.Length);
+            }
+
+            if (loadedData.longWidthInfo != null)
+            {
+                Array.Resize(ref longWidthInfo, loadedData.longWidthInfo.Length);
+                Array.Copy(loadedData.longWidthInfo, longWidthInfo, loadedData.longWidthInfo.Length);
             }
         }
         else

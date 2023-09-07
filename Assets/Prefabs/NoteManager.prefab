@@ -48,13 +48,17 @@ MonoBehaviour:
   longNotePrefab: {fileID: 9209405941954894094, guid: b3767abdaa6f9c042b77ce53bc8c06fd, type: 3}
   targetParent: {fileID: 0}
   clickedButton: {fileID: 0}
-  fileName: 
-  nameInput: {fileID: 3785424647798727910, guid: f5b9d44ee96f5a64c9ba6d5cb674e29d, type: 3}
+  fileName: longnotetest
+  nameInput: {fileID: 0}
   noteInfo:
     songName: 
     positionInfo: []
     spikePositionInfo: []
+    longNotePositionInfo: []
+    longNoteEndPositionInfo: []
+    longWidthInfo: []
   notePosition: []
-  savePostion: []
+  longNotePosition: []
+  longWidth: []
   isLongNote: 0
   isLongNoteActive: 0

@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +15,8 @@ public class note : MonoBehaviour
     [Header("* Object Reference")]
     [SerializeField] GameObject goNote = null;
     [SerializeField] GameObject spike = null;
+    [SerializeField] GameObject longNoteLine = null;
+    [SerializeField] GameObject longNoteEnd = null;
     Timing TimingManager;
 
     [Header("* SongInfo Reference")]
@@ -20,11 +24,14 @@ public class note : MonoBehaviour
     public string songName;
     public Vector3[] positionInfo;
     public Vector3[] spikePositionInfo;
+    public Vector3[] longNotePositionInfo;
+    public Vector3[] longNoteEndPositionInfo;
+    public float[] longWidthInfo;
 
     void Start()
     {
         TimingManager = GetComponent<Timing>();
-        GameSystem.instance.noteInfoSaver.LoadData(fileName+".json", ref songName, ref positionInfo, ref spikePositionInfo);
+        GameSystem.instance.noteInfoSaver.LoadData(fileName+".json", ref songName, ref positionInfo, ref spikePositionInfo, ref longNotePositionInfo, ref longNoteEndPositionInfo, ref longWidthInfo);
         SavedNoteSpawn();
     }
 
@@ -41,6 +48,21 @@ public class note : MonoBehaviour
         foreach (Vector3 position in spikePositionInfo)
         {
             GameObject t_note = Instantiate(spike, position, Quaternion.identity);
+            t_note.transform.SetParent(this.transform);
+        }
+
+        foreach (Vector3 position in longNoteEndPositionInfo)
+        {
+            GameObject t_note = Instantiate(longNoteEnd, position, Quaternion.identity);
+            t_note.transform.SetParent(this.transform);
+        }
+
+        for (int i = 0; i < longNotePositionInfo.Length; i++)
+        {
+            Vector3 position = longNotePositionInfo[i];
+            float width = longWidthInfo[i] + 30f; // 해당 위치에 대한 폭 정보 가져오기
+            GameObject t_note = Instantiate(longNoteLine, position, Quaternion.identity);
+            t_note.GetComponent<RectTransform>().sizeDelta = new Vector2(width, t_note.GetComponent<RectTransform>().sizeDelta.y);
             t_note.transform.SetParent(this.transform);
         }
     }
