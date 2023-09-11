@@ -5633,8 +5633,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f900ad8e3aa9d94890da8306cad6f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScore: 10000000
-  noteCount: 0
+  maxScore: 1000000
+  noteCount: 150
   currentScore: 0
 --- !u!1 &1850105449
 GameObject:
