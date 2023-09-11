@@ -14,6 +14,7 @@ public class GameSystem : MonoBehaviour
     public KeyInteraction keyInteraction;
     public LongNote longNote;
     public LongNoteSpawn longNoteLink;
+    public ScoreManager scoreManager;
     public bool isEditMode;
 
     public GameObject normalNote;

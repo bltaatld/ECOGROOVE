@@ -127,7 +127,7 @@ MonoBehaviour:
   isEditMode: 0
   target: {fileID: 0}
   boxCollider: {fileID: 1332248301330183227}
-  currentTimingTag: 
+  currentTimingTag: Debug
   longNoteSpeed: 400
   width: 320.5897
   height: 0

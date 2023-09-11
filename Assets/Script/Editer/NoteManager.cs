@@ -94,6 +94,7 @@ public class NoteManager : MonoBehaviour
         }
 
         GameSystem.instance.noteInfoSaver.SaveData(noteInfo, fileName + ".json");
+        UnityEditor.AssetDatabase.Refresh();
     }
 
 
