@@ -15,6 +15,7 @@ public class GameSystem : MonoBehaviour
     public LongNote longNote;
     public LongNoteSpawn longNoteLink;
     public ScoreManager scoreManager;
+    public LightEffectManager lightEffectManager;
     public bool isEditMode;
 
     public GameObject normalNote;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     public int maxScore = 10000000; // 최대 상한 점수
     public int noteCount = 0; // 맵의 노트 수
     public int currentScore = 0; // 현재 점수
+    public TextMeshProUGUI[] scoreText;
 
     // 판정 이름과 해당 판정에 대한 계수를 저장하는 사전(Dictionary)
     private Dictionary<string, float> judgmentCoefficients = new Dictionary<string, float>
@@ -23,6 +25,12 @@ public class ScoreManager : MonoBehaviour
     {
         float initialScore = (float)maxScore / (float)noteCount;
         Debug.Log("Initial Score: " + initialScore);
+    }
+
+    private void Update()
+    {
+        scoreText[0].text = currentScore.ToString();
+        scoreText[1].text = currentScore.ToString();
     }
 
     // 각 판정에 따른 점수를 게임 진행 중에 계산

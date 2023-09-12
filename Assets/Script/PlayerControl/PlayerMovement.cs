@@ -11,11 +11,14 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float maxHealth;
     public float health;
+    public bool canJump;
+    public bool gimmikActive;
 
     [Header("[ Component ]")]
     public Rigidbody2D rigid;
     public Animator animator;
     public Slider slider;
+    public GravityChange gravityGimmik;
 
     [Header("[ Flick ]")]
     public Vector2 touchStartPos;
@@ -33,8 +36,8 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetTrigger("IsClick");
         }
-        // 스와이프 행동 시
-        else if (Input.touchCount > 0)
+
+        if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -45,38 +48,44 @@ public class PlayerMovement : MonoBehaviour
             else if (touch.phase == TouchPhase.Ended)
             {
                 touchEndPos = touch.position;
-                CheckForFlick();
+                Vector2 flickDirection = touchEndPos - touchStartPos;
+                float flickDistance = flickDirection.magnitude;
+                float flickSpeed = flickDistance / touch.deltaTime;
+
+                if (flickDistance > flickThreshold && flickSpeed > minFlickSpeed&& canJump == true)
+                {
+                    Jump();
+                }
             }
         }
 
         rigid.velocity = new Vector2(moveSpeed, rigid.velocity.y);
     }
 
-    void CheckForFlick()
-    {
-        Vector2 flickDirection = touchEndPos - touchStartPos;
-        float flickDistance = flickDirection.magnitude;
-        float flickSpeed = flickDistance / Time.deltaTime;
-
-        if (flickDistance > flickThreshold && flickSpeed > minFlickSpeed)
-        {
-            Debug.Log("Flick detected!");
-            Jump();
-            // 여기에 리듬 게임 로직을 추가할 수 있습니다.
-        }
-    }
-
     void Jump()
     {
+        if (gimmikActive) { gravityGimmik.ReverseGravity(); }
+
+        animator.SetBool("IsJump", true);
         rigid.velocity = new Vector2(rigid.velocity.x, 0f);
         rigid.AddForce(new Vector2(0f, jumpForce * 1));
+        canJump = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            canJump = true;
             animator.SetBool("IsJump", false);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            canJump = false;
         }
     }
 }

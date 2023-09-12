@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    Timing TimingManager;
-    void Start()
-    {
-        TimingManager = FindObjectOfType<Timing>();
-    }
+    public Timing TimingManager;
+
     void Update()
     {
         if (Input.anyKeyDown)
