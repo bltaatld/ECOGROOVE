@@ -309,6 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 4674153770194270407, guid: fe95caf951c546145b0a200434329c98, type: 3}
+  anotherObject: {fileID: 4674153770194270407, guid: c6468bfcd5fcefd49a8c2949bdf37002, type: 3}
   script: {fileID: 41884301}
   bpm: 110
   bpmInput: {fileID: 1421557684}
