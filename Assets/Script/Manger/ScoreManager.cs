@@ -20,11 +20,29 @@ public class ScoreManager : MonoBehaviour
         { "MESSED", 0.0f }
     };
 
-    // 게임 시작 시 최대 상한 점수를 노트 수로 나누어 계산
-    private void Start()
+    public int GetHitObjectCount()
     {
-        float initialScore = (float)maxScore / (float)noteCount;
-        Debug.Log("Initial Score: " + initialScore);
+        int hitObjectCount = 0;
+
+        // Scene 내의 모든 GameObject를 가져옵니다.
+        GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
+
+        // 모든 GameObject를 순회하면서 Hit 컴포넌트를 가진 오브젝트인지 확인합니다.
+        foreach (GameObject obj in allGameObjects)
+        {
+            if (obj.GetComponent<Hit>() != null && obj.GetComponent<Hit>().isSpike == false)
+            {
+                hitObjectCount++;
+            }
+
+            if (obj.GetComponent<NoteMove>() != null)
+            {
+                hitObjectCount++;
+            }
+        }
+
+        Debug.Log("Hit objects count: " + hitObjectCount);
+        return hitObjectCount;
     }
 
     private void Update()

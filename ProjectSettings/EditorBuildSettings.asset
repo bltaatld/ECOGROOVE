@@ -6,9 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PlayScene/PlayTestScene.unity
+    path: Assets/Scenes/Editor/PlayTestScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Editor.unity
+    path: Assets/Scenes/Editor/Editor.unity
     guid: cf47685590c48b14aa37ca2ccedb2088
+  - enabled: 1
+    path: Assets/Scenes/PlayScene/Space/PlayScene_Space1.unity
+    guid: 7ffb26c1309be894ab745d3bcb6967b4
+  - enabled: 1
+    path: Assets/Scenes/PlayScene/Sea/PlayScene_Sea1.unity
+    guid: 17ced924f7c38fd4ba2a84b30af8588b
+  - enabled: 1
+    path: Assets/Scenes/PlayScene/Forest/PlayScene_Forest3.unity
+    guid: e6f63c8fb23ce7d488fb7197dbf00452
+  - enabled: 1
+    path: Assets/Scenes/PlayScene/City/PlayScene_City.unity
+    guid: 64c3e84af50081f4889d45d25fc72f95
+  - enabled: 1
+    path: Assets/Scenes/PlayScene/MainTitle.unity
+    guid: b8ca3bc74bb900944b512d696b4cc3d4
+  - enabled: 1
+    path: Assets/Scenes/PlayScene/StageSelect.unity
+    guid: 48b897cdff1b90d448f588a9a8fadfbc
   m_configObjects: {}

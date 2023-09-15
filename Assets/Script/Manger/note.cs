@@ -65,6 +65,7 @@ public class note : MonoBehaviour
             t_note.GetComponent<RectTransform>().sizeDelta = new Vector2(width, t_note.GetComponent<RectTransform>().sizeDelta.y);
             t_note.transform.SetParent(this.transform);
         }
+        GameSystem.instance.scoreManager.noteCount = GameSystem.instance.scoreManager.GetHitObjectCount();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
