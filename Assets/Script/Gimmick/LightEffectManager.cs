@@ -11,7 +11,7 @@ public class LightEffectManager : MonoBehaviour
     public bool isTimerRunning = false;
     public float timer = 0.0f;
     public float timerInterval = 10.0f; // 10초마다 실행
-    public float backTimerInterval = 10.0f; // 10초마다 실행
+    public float backTimerInterval = 3f; // 10초마다 실행
 
     private void Start()
     {
@@ -23,13 +23,19 @@ public class LightEffectManager : MonoBehaviour
     {
         if (isTimerRunning)
         {
-            isLightNoteHit = false;
             timer += Time.deltaTime;
-            if (timer >= backTimerInterval)
+
+            if (timer <= backTimerInterval)
             {
-                timer = 0.0f;
-                globalLight.intensity = originalLightIntensity;
-                isTimerRunning = false;
+                globalLight.intensity += 0.1f;
+
+                if (globalLight.intensity >= originalLightIntensity)
+                {
+                    timer = 0.0f;
+                    isLightNoteHit = false;
+                    isTimerRunning = false;
+                    StartCoroutine(LightIntensityDecreaseCoroutine());
+                }
             }
         }
 
@@ -46,7 +52,7 @@ public class LightEffectManager : MonoBehaviour
             // 10초 동안 globalLight의 intensity를 0.1까지 감소시킴
             float elapsedTime = 0.0f;
             float startIntensity = globalLight.intensity;
-            float targetIntensity = 0.1f;
+            float targetIntensity = 0.03f;
 
             while (elapsedTime < timerInterval)
             {

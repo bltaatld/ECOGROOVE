@@ -1,4 +1,4 @@
-using Ozi_Story;
+ï»¿using Ozi_Story;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +27,7 @@ public class ScrollScript : MonoBehaviour
             transform.position += new Vector3(Whell.y * WheelSpeed * NoteWriter.MAX_ENLARGEMENT * Mul * Tap.canvasMul, 0.0f, 0.0f);
 
 
-            // ½ºÅ©·Ñ À§·Î ¿Ã¸± ¶§
+            // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ ï¿½ï¿½
             if (Whell.y > 0)
             {
                 followObject.transform.position += new Vector3(-0.462963f, 0.0f, 0.0f);
@@ -36,7 +36,7 @@ public class ScrollScript : MonoBehaviour
                     GameSystem.instance.noteManager.notePosition[i] = new Vector3(GameSystem.instance.noteManager.notePosition[i].x + 50f, GameSystem.instance.noteManager.notePosition[i].y, GameSystem.instance.noteManager.notePosition[i].z);
                 }
             }
-            // ½ºÅ©·Ñ ¾Æ·¡·Î ³»¸± ¶§
+            // ï¿½ï¿½Å©ï¿½ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
             else if (Whell.y < 0)
             {
                 followObject.transform.position += new Vector3(0.462963f, 0.0f, 0.0f);
@@ -62,7 +62,7 @@ public class ScrollScript : MonoBehaviour
 
     public void SetMul()
     {
-        if(float.TryParse(inputMul.text, out Mul))
+        if (float.TryParse(inputMul.text, out Mul))
         {
             Debug.Log("mul set to " + Mul.ToString());
         }

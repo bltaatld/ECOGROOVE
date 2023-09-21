@@ -16,6 +16,7 @@ TagManager:
   - Dirty
   - LongNoteEnd
   - Debug
+  - kill
   layers:
   - Default
   - TransparentFX

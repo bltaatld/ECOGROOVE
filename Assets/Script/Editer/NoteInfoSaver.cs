@@ -6,7 +6,7 @@ public class NoteInfoSaver : MonoBehaviour
 {
     public void SaveData(NoteInfo data, string fileName)
     {
-        string folderPath = Application.dataPath + "/Data/";
+        string folderPath = Application.persistentDataPath;
         string filePath = Path.Combine(folderPath, fileName);
         string jsonData = JsonUtility.ToJson(data, true);
 
@@ -22,7 +22,7 @@ public class NoteInfoSaver : MonoBehaviour
 
     public void LoadData(string fileName, ref string songName, ref Vector3[] notePosition, ref Vector3[] spikePosition, ref Vector3[] longNotePositionInfo, ref Vector3[] longNoteEndPositionInfo, ref float[] longWidthInfo)
     {
-        string filePath = "Assets/Data/" + fileName;
+        string filePath = Application.persistentDataPath + "/" + fileName;
 
         if (File.Exists(filePath))
         {

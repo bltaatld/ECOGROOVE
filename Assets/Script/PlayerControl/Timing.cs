@@ -45,22 +45,34 @@ public class Timing : MonoBehaviour
                     Debug.Log("Hit " + x);
                     if (x == 0)
                     {
-                        GameSystem.instance.longNote.currentTimingTag = "Pure";
+                        if(GameSystem.instance.longNote != null)
+                        {
+                            GameSystem.instance.longNote.currentTimingTag = "Pure";
+                        }
                         EffectMan.PerfectHitEffect();
                     }
                     if (x == 1)
                     {
-                        GameSystem.instance.longNote.currentTimingTag = "Neat";
+                        if (GameSystem.instance.longNote != null)
+                        {
+                            GameSystem.instance.longNote.currentTimingTag = "Neat";
+                        }
                         EffectMan.GoodHitEffect();
                     }
                     if (x == 2)
                     {
-                        GameSystem.instance.longNote.currentTimingTag = "Clean";
+                        if (GameSystem.instance.longNote != null)
+                        {
+                            GameSystem.instance.longNote.currentTimingTag = "Clean";
+                        }
                         EffectMan.BadHitEffect();
                     }
                     if (x == 3)
                     {
-                        GameSystem.instance.longNote.currentTimingTag = "Dirty";
+                        if (GameSystem.instance.longNote != null)
+                        {
+                            GameSystem.instance.longNote.currentTimingTag = "Dirty";
+                        }
                         EffectMan.ToBadHitEffect();
                     }
                     return;

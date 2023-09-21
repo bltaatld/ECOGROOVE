@@ -94,7 +94,6 @@ public class NoteManager : MonoBehaviour
         }
 
         GameSystem.instance.noteInfoSaver.SaveData(noteInfo, fileName + ".json");
-        UnityEditor.AssetDatabase.Refresh();
     }
 
 
@@ -182,7 +181,7 @@ public class NoteManager : MonoBehaviour
             }
         }
     }
-
+    
     public void longNoteActive(bool value)
     {
         isLongNote = value;

@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timing: 0
-  Mul: 5
+  Mul: 2.7
   isNotAdd: 0
   followObject: {fileID: 519420028}
   inputMul: {fileID: 0}
@@ -2498,11 +2498,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1201162383609238921, guid: f771b2dbc66d62d4697ee23ff471d540, type: 3}
       propertyPath: m_Size.x
-      value: 100
+      value: 118.6723
       objectReference: {fileID: 0}
     - target: {fileID: 1201162383609238921, guid: f771b2dbc66d62d4697ee23ff471d540, type: 3}
       propertyPath: m_Size.y
-      value: 100
+      value: 119.35217
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201162383609238921, guid: f771b2dbc66d62d4697ee23ff471d540, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.16991425
+      objectReference: {fileID: 0}
+    - target: {fileID: 1201162383609238921, guid: f771b2dbc66d62d4697ee23ff471d540, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.17009163
       objectReference: {fileID: 0}
     - target: {fileID: 1201162383890226786, guid: f771b2dbc66d62d4697ee23ff471d540, type: 3}
       propertyPath: m_Pivot.x
@@ -2647,7 +2655,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2672,7 +2680,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_TargetDisplay: 0
 --- !u!224 &654136587
 RectTransform:
@@ -3108,6 +3116,7 @@ MonoBehaviour:
   longNoteLink: {fileID: 933266098}
   scoreManager: {fileID: 0}
   lightEffectManager: {fileID: 0}
+  playerInfo: {fileID: 0}
   isEditMode: 1
   normalNote: {fileID: 7432593000388643157, guid: 4b72ed84899b21344a1b418ac5e0b472, type: 3}
   jumpNote: {fileID: 34446998627661257, guid: 303e94d7c43530f47bf153e39071b326, type: 3}
@@ -5502,6 +5511,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d33c9072b8c7b4fad4de2df82fdf1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStart: 0
+  Scenename: 
 --- !u!4 &1438341714
 Transform:
   m_ObjectHideFlags: 0
@@ -5545,7 +5556,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 368c794819f1bd74da9d010879278a41, type: 3}
+  m_audioClip: {fileID: 8300000, guid: af446f4b82103e84aa12148574a7ef96, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

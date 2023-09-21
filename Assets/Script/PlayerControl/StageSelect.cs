@@ -8,7 +8,31 @@ public class StageSelect : MonoBehaviour
 {
     public TextMeshProUGUI stageInfo;
     public TextMeshProUGUI stageName;
+    public TextMeshProUGUI stageScore;
+    public Button[] stageSelectButton;
     public Image stageImage;
+    public GameObject[] bigCoinImage;
+
+    public void Start()
+    {
+        for(int i = 0; i < stageSelectButton.Length; i++)
+        {
+            stageSelectButton[i].gameObject.SetActive(GameSystem.instance.playerInfo.stageDataList[i].isCleared);
+        }
+    }
+
+    public void bigCoinChange(int type)
+    {
+        for (int i = 0; i < GameSystem.instance.playerInfo.stageDataList[type - 1].bigCoinsCollected; i++)
+        {
+            bigCoinImage[i].SetActive(true);
+        }    
+    }
+
+    public void scoreChange(int type)
+    {
+        stageScore.text = GameSystem.instance.playerInfo.stageDataList[type - 1].score.ToString();
+    }
 
     public void imageChange(Sprite image)
     {

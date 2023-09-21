@@ -1,4 +1,4 @@
-using Ozi_Story;
+ï»¿using Ozi_Story;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,7 +21,7 @@ public class BeatLine : MonoBehaviour
 
     private GameObject root;
 
-    public void SpawnLine(float count = 1000)
+    public void SpawnLine(float count = 5000)
     {
         if (!isSpawn)
         {
@@ -35,19 +35,19 @@ public class BeatLine : MonoBehaviour
             {
                 float result = (ms * i) + offset;
 
-                // 4¹øÂ°¸¶´Ù ¿ÀºêÁ§Æ® ¼ÒÈ¯
+                // 4ï¿½ï¿½Â°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¯
                 if (i % 4 == 0)
                 {
-                    GameObject @object = Instantiate(anotherObject, root.transform); // ´Ù¸¥ ¿ÀºêÁ§Æ® ¼ÒÈ¯
-                                                                                     // ´Ù¸¥ ¿ÀºêÁ§Æ®ÀÇ À§Ä¡, ½ºÄÉÀÏ, ÅØ½ºÆ® µî ¼³Á¤
+                    GameObject @object = Instantiate(anotherObject, root.transform); // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¯
+                                                                                     // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ø½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     @object.transform.position = new Vector2(transform.position.y + (result * NoteWriter.enlargement * mul * Tap.canvasMul), 425f);
                     @object.transform.localScale = new Vector2(Tap.canvasMul, Tap.canvasMul);
                     @object.transform.GetChild(1).GetComponent<Text>().text = $"{result}ms";
                 }
                 else
                 {
-                    GameObject @object = Instantiate(line, root.transform); // ¿ø·¡ ¿ÀºêÁ§Æ® ¼ÒÈ¯
-                                                                            // ¿ø·¡ ¿ÀºêÁ§Æ®ÀÇ À§Ä¡, ½ºÄÉÀÏ, ÅØ½ºÆ® µî ¼³Á¤
+                    GameObject @object = Instantiate(line, root.transform); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È¯
+                                                                            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½Ä¡, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Ø½ï¿½Æ® ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     @object.transform.position = new Vector2(transform.position.y + (result * NoteWriter.enlargement * mul * Tap.canvasMul), 425f);
                     @object.transform.localScale = new Vector2(Tap.canvasMul, Tap.canvasMul);
                     @object.transform.GetChild(1).GetComponent<Text>().text = $"{result}ms";
@@ -77,7 +77,7 @@ public class BeatLine : MonoBehaviour
 
     public void SetBPM()
     {
-        if(float.TryParse(bpmInput.text, out bpm))
+        if (float.TryParse(bpmInput.text, out bpm))
         {
             Debug.Log("bpm set to " + bpm.ToString());
         }

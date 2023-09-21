@@ -231,6 +231,7 @@ MonoBehaviour:
   animator: {fileID: 3014345366861302439}
   slider: {fileID: 0}
   gravityGimmik: {fileID: 3014345366861302436}
+  changer: {fileID: 0}
   touchStartPos: {x: 0, y: 0}
   touchEndPos: {x: 0, y: 0}
   flickThreshold: 150
@@ -248,8 +249,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.015721798}
-  m_Size: {x: 1.8125, y: 2.2810564}
+  m_Offset: {x: 0.32446563, y: -0.39083743}
+  m_Size: {x: 1.0358124, y: 1.5621667}
   m_Direction: 0
 --- !u!114 &3014345366861302436
 MonoBehaviour:

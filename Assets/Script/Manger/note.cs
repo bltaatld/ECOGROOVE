@@ -41,7 +41,7 @@ public class note : MonoBehaviour
         {
             GameObject t_note = Instantiate(goNote, position, Quaternion.identity);
             t_note.transform.SetParent(this.transform);
-            t_note.transform.position = new Vector2(t_note.transform.position.x, 430f);
+            t_note.GetComponent<RectTransform>().position = new Vector2(t_note.GetComponent<RectTransform>().position.x, t_note.GetComponent<RectTransform>().position.y);
             TimingManager.boxNoteList.Add(t_note);
         }
 
@@ -73,6 +73,7 @@ public class note : MonoBehaviour
         if (collision.CompareTag("note"))
         {
             Debug.Log("OutOfBounds");
+            GameSystem.instance.playerMovement.health -= 10f;
             TimingManager.boxNoteList.Remove(collision.gameObject);
             Destroy(collision.gameObject);
             //SceneManager.LoadScene("GameOverCutScene");

@@ -13,12 +13,14 @@ public class PlayerMovement : MonoBehaviour
     public float health;
     public bool canJump;
     public bool gimmikActive;
+    public string currentStage;
 
     [Header("[ Component ]")]
     public Rigidbody2D rigid;
     public Animator animator;
     public Slider slider;
     public GravityChange gravityGimmik;
+    public SceneChanger changer;
 
     [Header("[ Flick ]")]
     public Vector2 touchStartPos;
@@ -31,8 +33,13 @@ public class PlayerMovement : MonoBehaviour
         slider.maxValue = maxHealth;
         slider.value = health;
 
+        if(health <= 0)
+        {
+            changer.SceneChange("GameOverScene");
+        }
+
         // 단순한 터치로 클릭 시
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("IsClick");
         }
@@ -79,6 +86,11 @@ public class PlayerMovement : MonoBehaviour
             canJump = true;
             animator.SetBool("IsJump", false);
         }
+
+        if (collision.gameObject.CompareTag("kill"))
+        {
+            animator.SetTrigger("Dead");
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -87,5 +99,10 @@ public class PlayerMovement : MonoBehaviour
         {
             canJump = false;
         }
+    }
+
+    public void DeadAnim()
+    {
+        changer.SceneChange(currentStage);
     }
 }

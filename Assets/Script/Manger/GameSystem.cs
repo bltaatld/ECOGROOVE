@@ -16,6 +16,7 @@ public class GameSystem : MonoBehaviour
     public LongNoteSpawn longNoteLink;
     public ScoreManager scoreManager;
     public LightEffectManager lightEffectManager;
+    public PlayerInfo playerInfo;
     public bool isEditMode;
 
     public GameObject normalNote;
@@ -45,5 +46,6 @@ public class GameSystem : MonoBehaviour
     public void Awake()
     {
         instance = this;
+        playerInfo = GameObject.Find("PlayerInfo").GetComponent<PlayerInfo>();
     }
 }
